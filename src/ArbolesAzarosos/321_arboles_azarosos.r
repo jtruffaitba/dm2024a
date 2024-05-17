@@ -9,7 +9,7 @@ gc() # Garbage Collection
 require("data.table")
 require("rpart")
 
-sets = read.csv("~/buckets/b1/datasets/sets.csv")
+sets = read.csv("~/itba/mineria/buckets/b1/datasets/sets.csv")
 for (i in 1:9) {
 
 # parmatros experimento
@@ -36,14 +36,14 @@ PARAM$num_trees_max <- 500
 #------------------------------------------------------------------------------
 # Aqui comienza el programa
 
-setwd("~/buckets/b1/") # Establezco el Working Directory
+setwd("~/itba/mineria/buckets/b1/") # Establezco el Working Directory
 
 #cargo MI semilla, que esta en MI bucket
-tabla_semillas <- fread("./datasets/mis_semillas.txt" )
+tabla_semillas <- fread("~/itba/mineria/buckets/b1/datasets/mis_semillas.txt" )
 ksemilla_azar <- tabla_semillas[ 1, semilla ]  # 1 es mi primer semilla
 
 # cargo los datos
-dataset <- fread("~/datasets/dataset_pequeno.csv")
+dataset <- fread("~/itba/mineria/datasets/dataset_pequeno.csv")
 
 
 # creo la carpeta donde va el experimento

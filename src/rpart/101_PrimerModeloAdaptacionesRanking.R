@@ -10,22 +10,32 @@ require("tidyverse")
 # Aqui se debe poner la carpeta de la materia de SU computadora local
 setwd("~/itba/mineria") # Establezco el Working Directory
 
-varSacar = c("ctrx_quarter", "mcaja_ahorro", "mcuentas_saldo", "mcaja_ahorro", "cliente_antiguedad", "Visa_fechaalta", "Master_fechaalta")
+# en varSacar incluir las variables a convertirse en rankeadas y quitarse de la fórmula
+varSacar = c("ctrx_quarter", "mcuentas_saldo")
 
-# concateno los elementos del vector
-file = paste0("KTest_sin_", paste(varSacar, collapse = "_"))
+# calcula el nombre de las nuevas agregándole _rank al final
+varAgregar = paste0(varSacar, "_rank")
 
-# cargo el dataset
+# concateno los elementos del vector para darle nombre al archivo
+file = paste0("KTest_Rankeada_", paste(varSacar, collapse = "_"))
+
+# cargo el dataset. Verificar el path
 dataset <- fread("./datasets/dataset_pequeno.csv")
-dataset = dataset %>% select(-all_of(varSacar))
+
+# agrego las columnas rank
+dataset[, c(varAgregar) := lapply(varSacar, function(x) frankv(get(x)) /.N)]
 
 dtrain <- dataset[foto_mes == 202107] # defino donde voy a entrenar
 dapply <- dataset[foto_mes == 202109] # defino donde voy a aplicar el modelo
 
 # genero el modelo,  aqui se construye el arbol
 # quiero predecir clase_ternaria a partir de el resto de las variables
+
+# calculo la fornmula del modelo quitando las columnas viejas y dejando las nuevas rankeadas
+columnasModelo = setdiff(names(dataset), c(varSacar, "clase_ternaria"))
+formulaModelo = paste0("clase_ternaria ~ ", paste(columnasModelo, collapse = " + "))
 modelo <- rpart(
-        formula = "clase_ternaria ~ .",
+        formula = formulaModelo,
         data = dtrain, # los datos donde voy a entrenar
         xval = 0,
         cp = -1, # esto significa no limitar la complejidad de los splits
@@ -65,6 +75,7 @@ dapply[, Predicted := as.numeric(prob_baja2 > 1 / 40)]
 dir.create("./exp/")
 dir.create("./exp/KA2001")
 
+# en este path genera el pdf
 pdf(paste0('~/itba/mineria/outArbol', file, '.pdf'))
 
 prp(modelo,
