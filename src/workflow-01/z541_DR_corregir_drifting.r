@@ -139,7 +139,7 @@ campos_monetarios <- campos_monetarios[campos_monetarios %like%
   "^(m|Visa_m|Master_m|vm_m)"]
 
 camposVar3 = colnames(dataset)
-camposVar3 = camposVar3[camposVar3 %like% "^c"]
+camposVar3 = camposVar3[camposVar3 %like% "^c" & !camposVar3 %like% "clase_ternaria"]
 
 # aqui aplico un metodo para atacar el data drifting
 # hay que probar experimentalmente cual funciona mejor
