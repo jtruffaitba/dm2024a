@@ -138,12 +138,15 @@ campos_monetarios <- colnames(dataset)
 campos_monetarios <- campos_monetarios[campos_monetarios %like%
   "^(m|Visa_m|Master_m|vm_m)"]
 
+camposVar3 = colnames(dataset)
+camposVar3 = camposVar3[camposVar3 %like% "^c"]
+
 # aqui aplico un metodo para atacar el data drifting
 # hay que probar experimentalmente cual funciona mejor
 switch(envg$PARAM$metodo,
   "ninguno"        = cat("No hay correccion del data drifting"),
   "rank_simple"    = drift_rank_simple(campos_monetarios),
-  "rank_cero_fijo" = drift_rank_cero_fijo(campos_monetarios),
+  "rank_cero_fijo" = drift_rank_cero_fijo(camposVar3),
   "deflacion"      = drift_deflacion(campos_monetarios),
   "estandarizar"   = drift_estandarizar(campos_monetarios)
 )
