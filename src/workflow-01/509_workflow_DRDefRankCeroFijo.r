@@ -390,7 +390,7 @@ wf_sept <- function( pnombrewf )
   FEintra_base()
   #"rank_simple", "rank_cero_fijo", "deflacion", "estandarizar"
   DR_drifting_base(metodo="deflacion")
-  DR_drifting_base(metodo="rank_simple_cero_fijo")
+  DR_drifting_base(metodo="rank_cero_fijo")
   #el que estaba. rank_cero_fijo
   FEhist_base()
   FErf_attributes_base()
