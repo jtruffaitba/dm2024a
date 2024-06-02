@@ -363,8 +363,8 @@ ZZ_final_base7 <- function( pinputexps )
   param_local$train$meseta <- 2001
 
   # para el caso que deba graficar
-  param_local$graficar$envios_desde <-  8000L
-  param_local$graficar$envios_hasta <- 20000L
+  param_local$graficar$envios_desde <-  9500
+  param_local$graficar$envios_hasta <- 14000L
   param_local$graficar$ventana_suavizado <- 2001L
 
   # default 20 semillas
