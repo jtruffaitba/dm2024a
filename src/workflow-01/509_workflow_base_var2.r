@@ -364,7 +364,7 @@ ZZ_final_base9 <- function( pinputexps )
 
   param_local$kaggle$envios_desde <-  10000L
   param_local$kaggle$envios_hasta <- 14000L
-  param_local$kaggle$envios_salto <-   500L
+  param_local$kaggle$envios_salto <-  1000L
   param_local$kaggle$competition <- "itba-data-mining-2024-a"
 
 
