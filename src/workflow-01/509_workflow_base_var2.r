@@ -257,7 +257,7 @@ TS_strategy_base9 <- function( pinputexps )
 
 
   param_local$future <- c(202109)
-  param_local$final_train <- c(202007, 202006, 202105, 202104,
+  param_local$final_train <- c(202007, 202105, 202104,
     202103, 202102, 202101, 202012, 202011, 202010, 202009)
 
 
