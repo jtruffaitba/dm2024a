@@ -455,12 +455,11 @@ wf_semillerio9 <- function( pnombrewf )
   param_local <- exp_wf_init( pnombrewf ) # linea fija
 
   DT_incorporar_dataset_competencia2024()
-  CN_canaritos_asesinos_base(ratio=0.2, desvio=4.0)
   CA_catastrophe_base( metodo="MachineLearning")
   CN_canaritos_asesinos_base(ratio=0.2, desvio=4.0)
   FEintra_base()
   CN_canaritos_asesinos_base(ratio=0.2, desvio=4.0)
-  DR_drifting_base(metodo="deflacion")
+  DR_drifting_base(metodo="ninguno")
   CN_canaritos_asesinos_base(ratio=0.2, desvio=4.0)
   FEhist_base()
   CN_canaritos_asesinos_base(ratio=0.2, desvio=4.0)
